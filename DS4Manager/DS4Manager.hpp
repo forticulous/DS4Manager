@@ -17,7 +17,6 @@ public:
     DS4Manager() {
         ioHidManagerRef = nullptr;
         virtualHidConnection = IO_OBJECT_NULL;
-        start();
     }
     
     ~DS4Manager() {
