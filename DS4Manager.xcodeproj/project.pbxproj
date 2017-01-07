@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		094BEBEA1E1F97E600BDD341 /* DS4Manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 094BEBE81E1F97E600BDD341 /* DS4Manager.cpp */; };
 		09FCB0BB1E0CE23A00340ED1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 09FCB0BA1E0CE23A00340ED1 /* main.cpp */; };
+		09FCB0C31E0CE26C00340ED1 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FCB0C21E0CE26C00340ED1 /* IOKit.framework */; };
+		09FCB0C51E0CE4F400340ED1 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09FCB0C41E0CE4F400340ED1 /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +26,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		094BEBE81E1F97E600BDD341 /* DS4Manager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DS4Manager.cpp; sourceTree = "<group>"; };
+		094BEBE91E1F97E600BDD341 /* DS4Manager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DS4Manager.hpp; sourceTree = "<group>"; };
 		09FCB0B71E0CE23A00340ED1 /* DS4Manager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DS4Manager; sourceTree = BUILT_PRODUCTS_DIR; };
 		09FCB0BA1E0CE23A00340ED1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		09FCB0C21E0CE26C00340ED1 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		09FCB0C41E0CE4F400340ED1 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09FCB0C51E0CE4F400340ED1 /* CoreFoundation.framework in Frameworks */,
+				09FCB0C31E0CE26C00340ED1 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +52,7 @@
 			children = (
 				09FCB0B91E0CE23A00340ED1 /* DS4Manager */,
 				09FCB0B81E0CE23A00340ED1 /* Products */,
+				09FCB0C11E0CE26C00340ED1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +68,19 @@
 			isa = PBXGroup;
 			children = (
 				09FCB0BA1E0CE23A00340ED1 /* main.cpp */,
+				094BEBE81E1F97E600BDD341 /* DS4Manager.cpp */,
+				094BEBE91E1F97E600BDD341 /* DS4Manager.hpp */,
 			);
 			path = DS4Manager;
+			sourceTree = "<group>";
+		};
+		09FCB0C11E0CE26C00340ED1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09FCB0C41E0CE4F400340ED1 /* CoreFoundation.framework */,
+				09FCB0C21E0CE26C00340ED1 /* IOKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09FCB0BB1E0CE23A00340ED1 /* main.cpp in Sources */,
+				094BEBEA1E1F97E600BDD341 /* DS4Manager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +190,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -209,6 +231,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -246,6 +269,7 @@
 				09FCB0C01E0CE23A00340ED1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
