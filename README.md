@@ -1,4 +1,4 @@
 # DS4Manager
-Controller as virtual mouse
+Lets you use ds4 game controller as a virtual mouse
 
-uses virtual hid device: unbit/foohid
+Needs virtual hid device kext installed: unbit/foohid
