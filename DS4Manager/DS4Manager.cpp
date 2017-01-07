@@ -254,8 +254,8 @@ static void Handle_InputReportCallback(void* context,
     
     const uint8_t xButtonMask = 0b00100000;
     const uint8_t oButtonMask = 0b01000000;
-    const uint8_t mouseButton1Mask = 0b00000001; //0000 0100
-    const uint8_t mouseButton3Mask = 0b00000010; //0000 0001
+    const uint8_t mouseButton1Mask = 0b00000001; //0000 0001
+    const uint8_t mouseButton3Mask = 0b00000010; //0000 0010
     
     const int8_t fuzzFactor = 2;
     
@@ -270,13 +270,11 @@ static void Handle_InputReportCallback(void* context,
         int reportButtons = (int)report[buttonsIdx];
         if ((reportButtons & xButtonMask) == xButtonMask) {
             std::cout << "X Button Pressed" << std::endl;
-            // 00000100 left button
             mouseReport.buttons = mouseReport.buttons | mouseButton1Mask;
             buttonPressed = true;
         }
         if ((reportButtons & oButtonMask) == oButtonMask) {
             std::cout << "O Button Pressed" << std::endl;
-            // 00000001 right button
             mouseReport.buttons = mouseReport.buttons | mouseButton3Mask;
             buttonPressed = true;
         }
