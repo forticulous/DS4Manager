@@ -66,7 +66,7 @@ void DS4Manager::start() {
 }
 
 void DS4Manager::setupHidManager() {
-    ioHidManagerRef = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
+    ioHidManagerRef = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDManagerOptionNone);
     
     if (CFGetTypeID(ioHidManagerRef) != IOHIDManagerGetTypeID()) {
         std::cout << "Failed to create HID Manager" << std::endl;
