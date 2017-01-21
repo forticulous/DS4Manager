@@ -27,6 +27,11 @@ public:
     void start();
     
     void sendVirtualDeviceReport(mouse_report_t mouse);
+    
+    static void handleDeviceMatchingCallback(void* context, IOReturn result, void* sender, IOHIDDeviceRef iOHIDDeviceRef);
+    static void handleDeviceRemovalCallback(void* context, IOReturn result, void* sender, IOHIDDeviceRef iOHIDDeviceRef);
+    static void handleInputReportCallback(void* context, IOReturn result, void* sender, IOHIDReportType type,
+                                          uint32_t reportID, uint8_t *report, CFIndex reportLength);
 private:
     void setupHidManager();
     void openHidManager();

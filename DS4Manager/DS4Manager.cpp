@@ -7,10 +7,6 @@
 
 #include "DS4Manager.hpp"
 
-static void Handle_DeviceMatchingCallback(void* context, IOReturn result, void* sender, IOHIDDeviceRef iOHIDDeviceRef);
-static void Handle_DeviceRemovalCallback(void* context, IOReturn result, void* sender, IOHIDDeviceRef iOHIDDeviceRef);
-static void Handle_InputReportCallback(void* context, IOReturn result, void* sender, IOHIDReportType type, uint32_t reportID, uint8_t *report, CFIndex reportLength);
-
 unsigned char report_descriptor[] = {
     0x05, 0x01,                    // USAGE_PAGE (Generic Desktop)
     0x09, 0x02,                    // USAGE (Mouse)
@@ -101,9 +97,11 @@ void DS4Manager::setupHidManager() {
         CFRelease(dict);
     }
     
-    IOHIDManagerRegisterDeviceMatchingCallback(ioHidManagerRef, Handle_DeviceMatchingCallback, this);
-    IOHIDManagerRegisterDeviceRemovalCallback(ioHidManagerRef, Handle_DeviceRemovalCallback, this);
-    IOHIDManagerRegisterInputReportCallback(ioHidManagerRef, Handle_InputReportCallback, this);
+    
+    
+    IOHIDManagerRegisterDeviceMatchingCallback(ioHidManagerRef, DS4Manager::handleDeviceMatchingCallback, this);
+    IOHIDManagerRegisterDeviceRemovalCallback(ioHidManagerRef, DS4Manager::handleDeviceRemovalCallback, this);
+    IOHIDManagerRegisterInputReportCallback(ioHidManagerRef, DS4Manager::handleInputReportCallback, this);
     
     std::cout << "Registered callbacks" << std::endl;
 }
@@ -215,10 +213,10 @@ void DS4Manager::destroyVirtualDevice() {
     }
 }
 
-static void Handle_DeviceMatchingCallback(void* context,
-                                          IOReturn result,
-                                          void* sender,
-                                          IOHIDDeviceRef iOHIDDeviceRef) {
+void DS4Manager::handleDeviceMatchingCallback(void* context,
+                                              IOReturn result,
+                                              void* sender,
+                                              IOHIDDeviceRef iOHIDDeviceRef) {
     std::cout << "Device connected" << std::endl;
     
     std::cout << "Starting run loop" << std::endl;
@@ -226,10 +224,10 @@ static void Handle_DeviceMatchingCallback(void* context,
     CFRunLoopRun();
 }
 
-static void Handle_DeviceRemovalCallback(void* context,
-                                         IOReturn result,
-                                         void* sender,
-                                         IOHIDDeviceRef iOHIDDeviceRef) {
+void DS4Manager::handleDeviceRemovalCallback(void* context,
+                                             IOReturn result,
+                                             void* sender,
+                                             IOHIDDeviceRef iOHIDDeviceRef) {
     std::cout << "Device disconnected" << std::endl;
     
     CFRunLoopStop(CFRunLoopGetCurrent());
@@ -237,13 +235,13 @@ static void Handle_DeviceRemovalCallback(void* context,
     std::cout << "Run loop stopped" << std::endl;
 }
 
-static void Handle_InputReportCallback(void* context,
-                                       IOReturn result,
-                                       void* sender,
-                                       IOHIDReportType type,
-                                       uint32_t reportID,
-                                       uint8_t *report,
-                                       CFIndex reportLength) {
+void DS4Manager::handleInputReportCallback(void* context,
+                                           IOReturn result,
+                                           void* sender,
+                                           IOHIDReportType type,
+                                           uint32_t reportID,
+                                           uint8_t *report,
+                                           CFIndex reportLength) {
     if (context == nullptr) {
         return;
     }
