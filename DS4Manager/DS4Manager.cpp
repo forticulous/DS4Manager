@@ -97,8 +97,6 @@ void DS4Manager::setupHidManager() {
         CFRelease(dict);
     }
     
-    
-    
     IOHIDManagerRegisterDeviceMatchingCallback(ioHidManagerRef, DS4Manager::handleDeviceMatchingCallback, this);
     IOHIDManagerRegisterDeviceRemovalCallback(ioHidManagerRef, DS4Manager::handleDeviceRemovalCallback, this);
     IOHIDManagerRegisterInputReportCallback(ioHidManagerRef, DS4Manager::handleInputReportCallback, this);
@@ -303,12 +301,12 @@ void DS4Manager::handleInputReportCallback(void* context,
     }
     
     if (mouseMoved || buttonPressed) {
-        ((DS4Manager*)context)->sendVirtualDeviceReport(mouseReport);
+        static_cast<DS4Manager*>(context)->sendVirtualDeviceReport(mouseReport);
     }
     if (buttonPressed) {
         mouseReport.buttons = 0;
         mouseReport.x = 0;
         mouseReport.y = 0;
-        ((DS4Manager*)context)->sendVirtualDeviceReport(mouseReport);
+        static_cast<DS4Manager*>(context)->sendVirtualDeviceReport(mouseReport);
     }
 }
